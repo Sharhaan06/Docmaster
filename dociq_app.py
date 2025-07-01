@@ -151,7 +151,13 @@ if uploaded_file_1:
             st.warning("Please enter something to extract.")
         else:
             with st.spinner("Analyzing PDF 1…"):
-                result = ask_gpt(f"Extract the following from the document: {query_1}\n\n{text_1}")
+                result = ask_gpt(
+    f"You are an AI that extracts specific information from documents. "
+    f"Do not explain anything, just extract only what is asked. "
+    f"Respond with bullet points or clean labels. "
+    f"Now extract this: {query_1}\n\n{text_1}"
+)
+
             st.markdown("### 📌 Extracted Info")
             st.markdown(f"<div class='glow-box'>{result}</div>", unsafe_allow_html=True)
 
