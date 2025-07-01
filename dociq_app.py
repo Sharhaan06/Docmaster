@@ -8,7 +8,7 @@ import os
 # 🔑 ENV & API KEY
 # =============================
 load_dotenv()
-TOGETHER_API_KEY = os.getenv("tgp_v1_8o-swcebpf59UEbaCXweUNAnG8ckxnNDWnuVt7iPddQ")
+TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
 
 # =============================
 # 🎨 THEME & STYLE
