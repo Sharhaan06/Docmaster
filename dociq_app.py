@@ -16,9 +16,10 @@ TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
 
 def inject_css(dark: bool):
     """Inject dynamic CSS based on the current theme (dark / light)."""
-    bg   = "#000000" if dark else "#ffffff"
+    bg = "#000000" if dark else "#ffffff"
     text = "#ffffff" if dark else "#000000"
     glow = "rgba(255,255,255,0.25)" if dark else "rgba(0,0,0,0.1)"
+    input_bg = "#1e1e1e" if dark else "#f5f5f5"
 
     st.markdown(f"""
         <style>
@@ -38,12 +39,12 @@ def inject_css(dark: bool):
                 border-radius: 10px !important;
                 padding: 10px !important;
                 box-shadow: 0 0 10px {glow};
-                background-color: transparent;
+                background-color: {input_bg} !important;
                 color: {text} !important;
             }}
 
             .stTextInput>div>div {{
-                background-color: transparent !important;
+                background-color: {input_bg} !important;
             }}
 
             .stButton>button {{
@@ -152,12 +153,11 @@ if uploaded_file_1:
         else:
             with st.spinner("Analyzing PDF 1…"):
                 result = ask_gpt(
-    f"You are an AI that extracts specific information from documents. "
-    f"Do not explain anything, just extract only what is asked. "
-    f"Respond with bullet points or clean labels. "
-    f"Now extract this: {query_1}\n\n{text_1}"
-)
-
+                    f"You are an AI that extracts specific information from documents. "
+                    f"Do not explain anything, just extract only what is asked. "
+                    f"Respond with bullet points or clean labels. "
+                    f"Now extract this: {query_1}\n\n{text_1}"
+                )
             st.markdown("### 📌 Extracted Info")
             st.markdown(f"<div class='glow-box'>{result}</div>", unsafe_allow_html=True)
 
